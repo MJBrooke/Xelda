@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour
     // Reference to current movement input direction from the Input System
     private Vector2 _movement;
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
+    private Camera _cam;
     
     private Animator _animator;
 
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
         _playerControls = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
+        _cam = Camera.main;
     }
 
     private void OnEnable() => _playerControls.Enable();
@@ -44,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void AdjustPlayerFacingDirection()
     {
-        
+        var mousePos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _sr.flipX = mousePos.x < transform.position.x;
     }
 }
