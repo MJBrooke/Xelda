@@ -49,7 +49,8 @@ public class Sword : MonoBehaviour
         var mousePos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var playerPos = _playerController.transform.position;
 
-        var angle = mousePos.x < playerPos.x ? -180 : 0;
-        _activeWeapon.transform.rotation = Quaternion.Euler(0, angle, 0);
+        var angle = Mathf.Atan2(mousePos.y - playerPos.y, Mathf.Abs(mousePos.x - playerPos.x)) * Mathf.Rad2Deg;
+        var rotation = mousePos.x < playerPos.x ? -180 : 0;
+        _activeWeapon.transform.rotation = Quaternion.Euler(0, rotation, angle);
     }
 }
