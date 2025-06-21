@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool FacingLeft { get; set; } = false;
+
     private static readonly int MoveX = Animator.StringToHash("moveX");
     private static readonly int MoveY = Animator.StringToHash("moveY");
     
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void AdjustPlayerFacingDirection()
     {
         var mousePos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        _sr.flipX = mousePos.x < transform.position.x;
+        FacingLeft = mousePos.x < transform.position.x;
+        _sr.flipX = FacingLeft;
     }
 }

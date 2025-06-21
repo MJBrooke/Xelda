@@ -3,12 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Sword : MonoBehaviour
 {
-    // What do we want to do? We want to:
-    //    - Flip the X-axis depending on the mouse location (or rather, rotate using a Quarternion?)
-    // So what do we need?
-    //    - We need those same PlayerControls for the Mouse input
-    //    - The location of the Player? 
-    
+    [SerializeField] private GameObject _slashAnimPrefab;
+    [SerializeField] private Transform _slashAnimSpawnPoint;
     
     private static readonly int Attack1 = Animator.StringToHash("Attack");
     
@@ -17,6 +13,8 @@ public class Sword : MonoBehaviour
     private ActiveWeapon _activeWeapon;
     private Animator _animator;
     private Camera _cam;
+    
+    private GameObject _slashAnim;
 
     private void Awake()
     {
@@ -42,8 +40,25 @@ public class Sword : MonoBehaviour
         AdjustFacingDirection();
     }
 
-    private void Attack() => _animator.SetTrigger(Attack1);
-    
+    public void SwingUpFlipAnim()
+    {
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        if (_playerController.FacingLeft) _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+    }
+
+    public void SwingDownFlipAnim()
+    {
+        _slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (_playerController.FacingLeft) _slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+    }
+
+    private void Attack()
+    {
+        _animator.SetTrigger(Attack1);
+        _slashAnim = Instantiate(_slashAnimPrefab, _slashAnimSpawnPoint.position, Quaternion.identity);
+        _slashAnim.transform.SetParent(transform.parent);
+    }
+
     private void AdjustFacingDirection()
     {
         var mousePos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
