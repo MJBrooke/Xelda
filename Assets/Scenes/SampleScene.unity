@@ -256,7 +256,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -136663876, guid: 3d8d855b92264d44ab60e28ace49371a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -941,8 +941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fec7a0c3f95fff4fb20564dd2c0b18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slashAnimPrefab: {fileID: 6123086852656396919, guid: f912da6a741e3e544aa371243751c40f, type: 3}
-  _slashAnimSpawnPoint: {fileID: 1894125351}
+  slashAnimPrefab: {fileID: 6123086852656396919, guid: f912da6a741e3e544aa371243751c40f, type: 3}
+  slashAnimSpawnPoint: {fileID: 1894125351}
 --- !u!1001 &1013872653
 PrefabInstance:
   m_ObjectHideFlags: 0
