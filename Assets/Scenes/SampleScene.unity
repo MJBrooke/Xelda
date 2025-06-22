@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 171467941}
   - component: {fileID: 171467942}
+  - component: {fileID: 171467943}
   m_Layer: 0
   m_Name: Weapon Collider
   m_TagString: Untagged
@@ -205,6 +206,18 @@ PolygonCollider2D:
       - {x: 1.4565989, y: -0.37180763}
       - {x: 1.4611341, y: 0.7798587}
   m_UseDelaunayMesh: 0
+--- !u!114 &171467943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171467940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624380fc06ba4f4b9e4d64cb7c50a89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &195251826
 PrefabInstance:
   m_ObjectHideFlags: 0

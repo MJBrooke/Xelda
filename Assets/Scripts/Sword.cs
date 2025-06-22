@@ -68,9 +68,13 @@ public class Sword : MonoBehaviour
     private void Attack()
     {
         _animator.SetTrigger(Attack1); // Ensure the animator knows to trigger
+        weaponCollider.gameObject.SetActive(true);
+        
         _slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity); // Create a slash animation
         _slashAnim.transform.SetParent(transform.parent); // Move the animation to the sword's location
     }
+
+    public void DoneAttackingAnimEvent() => weaponCollider.gameObject.SetActive(false);
 
     // Ensure the sword rotates to the left or right side of the player.
     // TODO - Instead of rotating this individually, can we not just rotate the top-level player GameObject once?
