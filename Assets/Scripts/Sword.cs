@@ -9,6 +9,9 @@ public class Sword : MonoBehaviour
     
     // This is a point attached to our Player character, providing a relative start point for the animation.
     [SerializeField] private Transform slashAnimSpawnPoint;
+
+    // Reference to the permanent collider attached to the player character
+    [SerializeField] private Transform weaponCollider;
     
     private static readonly int Attack1 = Animator.StringToHash("Attack");
     
@@ -82,5 +85,6 @@ public class Sword : MonoBehaviour
         // By rotating the sword, we can use the same up/down animations on the LHS of the player
         var rotation = mousePos.x < playerPos.x ? -180 : 0;
         _activeWeapon.transform.rotation = Quaternion.Euler(0, rotation, angle);
+        weaponCollider.transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
 }
