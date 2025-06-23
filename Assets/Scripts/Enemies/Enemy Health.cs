@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -22,12 +23,12 @@ public class EnemyHealth : MonoBehaviour
         _currentHealth -= damage;
         // TODO - this should really be handled with some kind of Event. Fine for now though, for simplicity.
         _knockback.InvokeKnockback(PlayerController.Instance.transform, 15f);
-        _flash.FlashWhite();
-        DetectDeath();
+        StartCoroutine(DetectDeath(.2f));
     }
-
-    private void DetectDeath()
+    
+    private IEnumerator DetectDeath(float waitTime)
     {
+        yield return StartCoroutine(_flash.FlashCoroutine(waitTime));
         if (_currentHealth <= 0) Destroy(gameObject);
     }
 }
