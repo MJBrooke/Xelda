@@ -6,15 +6,18 @@ public class EnemyPathfinding : MonoBehaviour
     
     private Vector2 _direction;
     private Rigidbody2D _rb;
+    private Knockback _knockback;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _knockback = GetComponent<Knockback>();
         _direction = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
+        if (_knockback.IsKnockedBack) return;
         MoveSprite();
     }
     

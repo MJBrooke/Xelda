@@ -3,10 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool FacingLeft { get; private set; } = false;
+    public bool FacingLeft { get; private set; }
 
     private static readonly int MoveX = Animator.StringToHash("moveX");
     private static readonly int MoveY = Animator.StringToHash("moveY");
+    
+    // TODO - make a proper singleton instance
+    public static PlayerController Instance { get; private set; }
     
     [SerializeField] private float moveSpeed = 4f;
 
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this; // TODO - make a proper singleton instance
         _playerControls = new PlayerControls();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
