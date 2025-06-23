@@ -5,11 +5,16 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int startingHealth = 3;
     
     private Knockback _knockback;
+    private Flash _flash;
     
     private int _currentHealth;
 
-    private void Awake() => _knockback = GetComponent<Knockback>();
-    
+    private void Awake()
+    {
+        _knockback = GetComponent<Knockback>();
+        _flash = GetComponent<Flash>();
+    }
+
     private void Start() => _currentHealth = startingHealth;
 
     public void TakeDamage(int damage)
@@ -17,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
         _currentHealth -= damage;
         // TODO - this should really be handled with some kind of Event. Fine for now though, for simplicity.
         _knockback.InvokeKnockback(PlayerController.Instance.transform, 15f);
+        _flash.FlashWhite();
         DetectDeath();
     }
 
