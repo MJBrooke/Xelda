@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 3;
+    [SerializeField] private GameObject deathParticlesPrefab;
     
     private Knockback _knockback;
     private Flash _flash;
@@ -29,6 +30,8 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator DetectDeath(float waitTime)
     {
         yield return StartCoroutine(_flash.FlashCoroutine(waitTime/2));
-        if (_currentHealth <= 0) Destroy(gameObject);
+        if (_currentHealth > 0) yield break;
+        Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

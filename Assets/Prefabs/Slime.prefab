@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  deathParticlesPrefab: {fileID: 1863236884500706702, guid: f4a8a1ecfc9e2a64bbf0ed5dcbdfa967, type: 3}
 --- !u!114 &9091706323172785650
 MonoBehaviour:
   m_ObjectHideFlags: 0
